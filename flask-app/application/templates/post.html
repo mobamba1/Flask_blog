@@ -1,27 +1,36 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<!-- container for the form -->
-<!-- the 'form-group' class means that the items in the form will be grouped correctly when displayed -->
-<div class="form-group">
-    <!-- the form -->
-    <form method='POST' action=''>
-        <!-- first_name.label is the text displayed on the screen next to the text box --> 
-        {{ form.first_name.label }}
-        <!-- first_name is the input field, a text box in this case --> 
-        {{ form.first_name }}
-        <!-- if the form has any errors -->
-        {% if form.first_name.errors %}
-            <!-- surround the displayed errors in a error div tag, this can then be styled later to be red etc. -->
-            <div class="error">
-                <!-- for each error in the errors for the first_name input field -->
-                {% for error in form.first_name.errors %}
-                    <!-- display the error -->
-                    <span>{{ error }}</span>
-                <!-- end the for-loop -->
-                {% endfor %}
-            </div>
-        <!-- end the if statement -->
-        {% endif %}
-    </form>
+<div class="form">
+	<form method="POST" action="">
+		{{ form.hidden_tag() }}
+		<div class="form-group">
+			{{ form.title.label }}
+			{{ form.title }}
+			{% if form.title.errors %}
+			<div class="error">
+				{% for error in form.title.errors %}
+				    <span>{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% endif %}
+		</div>
+		<br>
+		<div class="form-group">
+			{{ form.content.label }}
+			{{ form.content }}
+			{% if form.content.errors %}
+			<div class="error">
+				{% for error in form.content.errors %}
+				    <span>{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% endif %}
+		</div>
+		<br>
+		<div class="form-group">
+		    {{ form.submit }}
+		</div>
+	</form>
 </div>
-{% endblock %}
+{% endblock body_content %}
+
